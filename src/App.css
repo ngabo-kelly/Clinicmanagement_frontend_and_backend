@@ -1,0 +1,127 @@
+.save-office-page {
+  padding: 24px;
+  max-width: 520px;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.save-office-page h1 {
+  margin: 0 0 20px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.save-office-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.save-office-row label {
+  min-width: 130px;
+  font-size: 1rem;
+}
+
+.save-office-row input {
+  width: 220px;
+  padding: 6px 8px;
+  border: 1px solid #666;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.save-office-page button {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 1px solid #666;
+  background: #222;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.save-office-success {
+  margin-top: 14px;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.save-office-error {
+  margin-top: 14px;
+  color: #ff6b81;
+  font-weight: 600;
+}
+
+.app-nav {
+  display: flex;
+  gap: 8px;
+  padding: 16px 24px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-nav button {
+  padding: 6px 12px;
+  border: 1px solid #666;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+}
+
+.office-list-page {
+  padding: 24px;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.office-list-page h1 {
+  margin: 0 0 16px;
+  font-size: 2rem;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-row input {
+  width: 280px;
+  padding: 6px 8px;
+  border: 1px solid #666;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.office-table {
+  width: 100%;
+  max-width: 760px;
+  border-collapse: collapse;
+  background: #111;
+  color: #fff;
+}
+
+.office-table th,
+.office-table td {
+  border: 1px solid #555;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.office-table th {
+  background: #222;
+}
+
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-cell button {
+  padding: 4px 10px;
+  border: 1px solid #666;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+}

@@ -1,0 +1,315 @@
+{
+  "info": {
+    "_postman_id": "clinic-quiz-27278",
+    "name": "Clinic JPA JPQL Quiz",
+    "description": "AUCA Kigali Clinic quiz collection. Base URL: http://localhost:1014",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:1014"
+    }
+  ],
+  "item": [
+    {
+      "name": "CRUD",
+      "item": [
+        {
+          "name": "Office - Create",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Room 101\",\n  \"officeNumber\": 101\n}"
+            },
+            "url": "{{baseUrl}}/api/offices/save"
+          }
+        },
+        {
+          "name": "Office - Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/offices/all"
+          }
+        },
+        {
+          "name": "Patient - Create",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Aline\",\n  \"lastName\": \"Uwase\",\n  \"dateOfBirth\": \"1995-04-12\"\n}"
+            },
+            "url": "{{baseUrl}}/api/patients/save"
+          }
+        },
+        {
+          "name": "Patient - Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/patients/all"
+          }
+        },
+        {
+          "name": "Doctor - Create",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Alice\",\n  \"lastName\": \"Mugisha\",\n  \"dateOfBirth\": \"1990-01-15\",\n  \"office\": { \"id\": 1 }\n}"
+            },
+            "url": "{{baseUrl}}/api/doctors/save"
+          }
+        },
+        {
+          "name": "Doctor - Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/all"
+          }
+        },
+        {
+          "name": "Specialization - Create",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Cardiology\"\n}"
+            },
+            "url": "{{baseUrl}}/api/specializations/save"
+          }
+        },
+        {
+          "name": "Specialization - Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/specializations/all"
+          }
+        },
+        {
+          "name": "Appointment - Create (A4)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-11-25\",\n  \"reason\": \"Check-up\",\n  \"status\": \"SCHEDULED\",\n  \"patient\": { \"id\": 1 },\n  \"doctor\": { \"id\": 2 }\n}"
+            },
+            "url": "{{baseUrl}}/api/appointments/save"
+          }
+        },
+        {
+          "name": "Appointment - Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/appointments/all"
+          }
+        },
+        {
+          "name": "Doctor - Add specialization",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/1/specialization/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Part A - Derived",
+      "item": [
+        {
+          "name": "A1 Patients by last name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/by-last-name?lastName=uwase",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "by-last-name"],
+              "query": [{ "key": "lastName", "value": "uwase" }]
+            }
+          }
+        },
+        {
+          "name": "A2 Appointments by status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/by-status?status=SCHEDULED",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "by-status"],
+              "query": [{ "key": "status", "value": "SCHEDULED" }]
+            }
+          }
+        },
+        {
+          "name": "A3 Appointments between dates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/between?start=2026-10-01&end=2026-10-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "between"],
+              "query": [
+                { "key": "start", "value": "2026-10-01" },
+                { "key": "end", "value": "2026-10-31" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "A4 Save appointment (double booking check)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Duplicate test\",\n  \"status\": \"SCHEDULED\",\n  \"patient\": { \"id\": 1 },\n  \"doctor\": { \"id\": 1 }\n}"
+            },
+            "url": "{{baseUrl}}/api/appointments/save"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Part B - JPQL Joins",
+      "item": [
+        {
+          "name": "B1 Doctors by specialization",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/by-specialization?name=cardiology",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "by-specialization"],
+              "query": [{ "key": "name", "value": "cardiology" }]
+            }
+          }
+        },
+        {
+          "name": "B2 Doctors without office",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/without-office"
+          }
+        },
+        {
+          "name": "B3 Unused specializations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/specializations/unused"
+          }
+        },
+        {
+          "name": "B4 Patients of a doctor",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/patients/of-doctor/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Part C - Aggregates and Bulk",
+      "item": [
+        {
+          "name": "C1 Appointments stats by status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/appointments/stats/by-status"
+          }
+        },
+        {
+          "name": "C2 Frequent patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/frequent?min=3",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "frequent"],
+              "query": [{ "key": "min", "value": "3" }]
+            }
+          }
+        },
+        {
+          "name": "C3 Busiest office",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/offices/busiest"
+          }
+        },
+        {
+          "name": "C4 Cancel day (doctor absent)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/cancel-day?doctorId=1&date=2026-10-20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "cancel-day"],
+              "query": [
+                { "key": "doctorId", "value": "1" },
+                { "key": "date", "value": "2026-10-20" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bonus",
+      "item": [
+        {
+          "name": "Bonus Page appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/page?page=0&size=5&sort=appointmentDate,desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "page"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "5" },
+                { "key": "sort", "value": "appointmentDate,desc" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bonus Delete cancelled before date",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/cancelled-before?date=2026-11-01",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "cancelled-before"],
+              "query": [{ "key": "date", "value": "2026-11-01" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

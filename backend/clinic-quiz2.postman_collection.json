@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "Clinic Quiz 2",
+    "description": "Quiz 2 Completing the Backend - one request per requirement ID",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:1014" }],
+  "item": [
+    {
+      "name": "A1 Add specialization",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": "{{baseUrl}}/api/doctors/2/specializations/1"
+      }
+    },
+    {
+      "name": "A2 Remove specialization",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/doctors/2/specializations/1"
+      }
+    },
+    {
+      "name": "A3 Free offices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/offices/free"
+      }
+    },
+    {
+      "name": "A4 Move doctor office",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": "{{baseUrl}}/api/doctors/1/office?officeNumber=104"
+      }
+    },
+    {
+      "name": "B1 Safe booking",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-11-05\",\n  \"reason\": \"New visit\",\n  \"status\": \"COMPLETED\",\n  \"patient\": { \"id\": 1 },\n  \"doctor\": { \"id\": 2 }\n}"
+        },
+        "url": "{{baseUrl}}/api/appointments/save"
+      }
+    },
+    {
+      "name": "B2 Status flow",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": "{{baseUrl}}/api/appointments/1/status?status=CONFIRMED"
+      }
+    },
+    {
+      "name": "B3 Reschedule",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": "{{baseUrl}}/api/appointments/3/reschedule?newDate=2026-11-10"
+      }
+    },
+    {
+      "name": "C1 Write prescription",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"medicineName\": \"Amoxicillin\",\n  \"dosage\": \"1 tablet, 3 times a day\",\n  \"durationDays\": 7\n}"
+        },
+        "url": "{{baseUrl}}/api/prescriptions/save?appointmentId=5"
+      }
+    },
+    {
+      "name": "C2 Prescriptions of appointment",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/prescriptions/appointment/5"
+      }
+    },
+    {
+      "name": "C3 Prescription history of patient",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/prescriptions/patient/SS-1001"
+      }
+    },
+    {
+      "name": "C4 Update prescription",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"medicineName\": \"Amoxicillin\",\n  \"dosage\": \"1 tablet, twice a day\",\n  \"durationDays\": 5\n}"
+        },
+        "url": "{{baseUrl}}/api/prescriptions/update/REPLACE-UUID"
+      }
+    },
+    {
+      "name": "C4 Delete prescription",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/prescriptions/delete/REPLACE-UUID"
+      }
+    },
+    {
+      "name": "D1 Doctor agenda",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/doctors/1/agenda?date=2026-10-20"
+      }
+    },
+    {
+      "name": "D2 Patient upcoming",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/patients/SS-1001/upcoming"
+      }
+    },
+    {
+      "name": "D3 Search doctors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/doctors/search?name=gis"
+      }
+    },
+    {
+      "name": "D4 Dashboard summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/dashboard/summary"
+      }
+    },
+    {
+      "name": "Bonus Top medicines",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/prescriptions/stats/top-medicines"
+      }
+    },
+    {
+      "name": "Bonus Doctor workload",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/doctors/workload?start=2026-09-01&end=2026-10-31"
+      }
+    }
+  ]
+}
